@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Properties>
+        <Property name="serverPath">F:/workItems/IISL_LOGS</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="appLoggerAp"
+                     fileName="${serverPath}/SpringApp.log"
+                     filePattern="${serverPath}/SpringApp.log.%d{yyyy-MM-dd}">
+            <PatternLayout pattern="%d{DATE} %5p : %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+        </RollingFile>
+
+        <!-- Yahan tum baad me apne baaki RollingFile appenders paste kar sakte ho
+             (startupLoggerAp, masterLoggerAp, etc.) jo tumne pehle bheje the. -->
+    </Appenders>
+
+    <Loggers>
+        <Logger name="notificationLogger" level="warn" additivity="false">
+            <AppenderRef ref="notificationLoggerAp"/>
+        </Logger>
+
+        <!-- Baaki tumhara pura logger mapping block yahan aa jayega -->
+
+        <Root level="warn">
+            <AppenderRef ref="appLoggerAp"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
